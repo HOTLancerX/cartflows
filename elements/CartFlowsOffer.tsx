@@ -65,7 +65,7 @@ function CartFlowsOfferFrontend({ element }: { element: any }) {
 const cartFlowsOfferElement = {
     type: "cartflows-offer",
     category: "cartflows",
-    label: "CartFlows Upsell / Downsell Card",
+    label: "CartFlows Up/Down sell",
     icon: "solar:fire-bold-duotone",
 
     schema: {

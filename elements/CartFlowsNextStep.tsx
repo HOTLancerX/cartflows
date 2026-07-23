@@ -29,7 +29,7 @@ function CartFlowsNextStepFrontend({ element }: { element: any }) {
 const cartFlowsNextStepElement = {
     type: "cartflows-next-step",
     category: "cartflows",
-    label: "CartFlows Funnel Next Step Button",
+    label: "CartFlows Next Step",
     icon: "solar:arrow-right-bold-duotone",
 
     schema: {

@@ -47,7 +47,7 @@ function CartFlowsOrderBumpFrontend({ element }: { element: any }) {
 const cartFlowsOrderBumpElement = {
     type: "cartflows-order-bump",
     category: "cartflows",
-    label: "CartFlows Order Bump Widget",
+    label: "CartFlows Order Bump",
     icon: "solar:star-bold-duotone",
 
     schema: {

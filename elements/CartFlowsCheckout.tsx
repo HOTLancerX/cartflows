@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { Text, Select } from "@/components/builder/controls";
-import { xFetch } from "@/lib/express";
 
 function CartFlowsCheckoutFrontend({ element }: { element: any }) {
     const s = element.schema;
@@ -31,7 +30,7 @@ function CartFlowsCheckoutFrontend({ element }: { element: any }) {
             return;
         }
 
-        xFetch(`/cartflows/checkout?flowSlug=${flowSlug}`)
+        fetch(`/api/cartflows/checkout?flowSlug=${flowSlug}`, { cache: "no-store" })
             .then((r) => r.json())
             .then((data) => {
                 if (data && !data.error) {
@@ -81,8 +80,9 @@ function CartFlowsCheckoutFrontend({ element }: { element: any }) {
                   }
                 : null;
 
-            const res = await xFetch("/cartflows/process", {
+            const res = await fetch("/api/cartflows/process", {
                 method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     flowId: stepData.flow._id,
                     stepId: stepData.step?.id,
@@ -259,7 +259,7 @@ function FunnelSelector({ value, onChange }: { value: string; onChange: (v: stri
     const [funnels, setFunnels] = useState<any[]>([]);
 
     useEffect(() => {
-        xFetch("/cartflows")
+        fetch("/api/cartflows", { cache: "no-store" })
             .then((r) => r.json())
             .then((d) => setFunnels(d.funnels || []))
             .catch(() => {});
@@ -276,7 +276,7 @@ function FunnelSelector({ value, onChange }: { value: string; onChange: (v: stri
 const cartFlowsCheckoutElement = {
     type: "cartflows-checkout",
     category: "cartflows",
-    label: "CartFlows Checkout & Order Bump",
+    label: "CartFlows Bump",
     icon: "solar:cart-check-bold-duotone",
 
     schema: {
